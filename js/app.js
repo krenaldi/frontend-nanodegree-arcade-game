@@ -1,13 +1,15 @@
 // Enemies our player must avoid
-var Enemy = function() {
+var Enemy = function(RowCount) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
-    this = Object.create(Enemy.prototype);
-    this.loc = loc;
-    return this;
+    this.x = 20;
+    this.y = RowCount * 88 + 66;
+
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
+    this.speed = this.speed();
+    return this
 }
 
 // Update the enemy's position, required method for game
@@ -16,13 +18,27 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    this.loc++;
+    this.x = this.x + this.speed * dt; //determines speed
+    //if bug hits edge of canvas it resets back to the begninning
+    if (this.x > 505){
+        this.x = 0;
+    }
 }
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
+//define speed() as prototype function
+Enemy.prototype.getspeed = function() {
+    var random = Math.random() + 0.5;
+    if (Math.floor(random) < 1) {
+        this.speed = 2.5;
+    } else {
+        this.speed = 5;
+    }
+    return this.speed;
+};
 
 // Now write your own player class
 // This class requires an update(), render() and
