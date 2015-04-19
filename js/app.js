@@ -43,13 +43,64 @@ Enemy.prototype.getspeed = function() {
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
+var Player = function() {
+    this.x = 280;
+    this.y = 300;
+    this.sprite = 'images/char-boy.png';
+};
+Player.prototype.update = function() {
+    if (this.x < 40) {
+        this.x = 0;
+    } else if (this.x > 400) {
+        this.x = 400;
+    } else if (this.y < 40) {
+        this.y = 0;
+    } else if (this.y > 400) {
+        this.y = 400;
+    }
+};
+
+//draws player
+Player.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
+//determines how arrow keys move Player
+Player.prototype.handleInput = function(key) {
+    switch (key) {
+
+        case 'left':
+            this.x = this.x - 40;
+            break;
+
+        case 'right':
+            this.x = this.x + 40;
+            break;
+
+        case 'up':
+            this.y = this.y - 40;
+            break;
+
+        case 'down':
+            this.y = this.y + 40;
+            break;
+
+        default:
+            break;
+    }
+};
 
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
+var allEnemies = [];
+
+for (var i = 0; i < 5; i++) {
+    allEnemies.push(new Enemy(i));
+}
+
 // Place the player object in a variable called player
-
-
+var player = new Player(200, 600);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
