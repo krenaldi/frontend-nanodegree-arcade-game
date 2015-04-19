@@ -9,7 +9,7 @@ var Enemy = function(RowCount) {
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
     this.speed = this.speed();
-    return this
+    return this;
 }
 
 // Update the enemy's position, required method for game
@@ -30,7 +30,7 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
 //define speed() as prototype function
-Enemy.prototype.getspeed = function() {
+Enemy.prototype.speed = function() {
     var random = Math.random() + 0.5;
     if (Math.floor(random) < 1) {
         this.speed = 2.5;
