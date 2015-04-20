@@ -2,7 +2,7 @@
 var Enemy = function(RowCount) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
-    this.x = 20;
+    this.x = -100;
     this.y = RowCount * 85 + 60 ;
     this.speed = this.speed();
     // The image/sprite for our enemies, this uses
