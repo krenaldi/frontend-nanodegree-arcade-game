@@ -4,6 +4,7 @@ var Enemy = function(RowCount) {
     // we've provided one for you to get started
     this.x = 20;
     this.y = RowCount * 88 + 60;
+    this.y = RowCount * 88 + 60 ;
     this.speed = this.speed();
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
@@ -54,7 +55,6 @@ Player.prototype.update = function() {
     } else if (this.x > 400) {
         this.x = 400;
     } else if (this.y < 40) {
-        this.y = 0;
     } else if (this.y > 400) {
         this.y = 400;
     }
