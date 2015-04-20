@@ -3,7 +3,7 @@ var Enemy = function(RowCount) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
     this.x = 20;
-    this.y = RowCount * 88 + 60 ;
+    this.y = RowCount * 85 + 60 ;
     this.speed = this.speed();
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
@@ -49,8 +49,9 @@ var Player = function() {
     this.sprite = 'images/char-boy.png';
 };
 Player.prototype.update = function() {
-    if (this.x < 40) {
-        this.x = 0;
+    if (this.x < 20 && this.y < 40) {
+        this.x = 200;
+        this.y = 400;
     } else if (this.x > 400) {
         this.x = 400;
     } else if (this.y < 40) {
