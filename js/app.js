@@ -3,7 +3,6 @@ var Enemy = function(RowCount) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
     this.x = 20;
-    this.y = RowCount * 88 + 60;
     this.y = RowCount * 88 + 60 ;
     this.speed = this.speed();
     // The image/sprite for our enemies, this uses
@@ -45,8 +44,8 @@ Enemy.prototype.speed = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 var Player = function() {
-    this.x = 280;
-    this.y = 300;
+    this.x = 200;
+    this.y = 400;
     this.sprite = 'images/char-boy.png';
 };
 Player.prototype.update = function() {
@@ -55,6 +54,8 @@ Player.prototype.update = function() {
     } else if (this.x > 400) {
         this.x = 400;
     } else if (this.y < 40) {
+        this.x = 200;
+        this.y = 400;
     } else if (this.y > 400) {
         this.y = 400;
     }
@@ -70,19 +71,19 @@ Player.prototype.handleInput = function(key) {
     switch (key) {
 
         case 'left':
-            this.x = this.x - 40;
+            this.x = this.x - 100;
             break;
 
         case 'right':
-            this.x = this.x + 40;
+            this.x = this.x + 100;
             break;
 
         case 'up':
-            this.y = this.y - 40;
+            this.y = this.y - 85;
             break;
 
         case 'down':
-            this.y = this.y + 40;
+            this.y = this.y + 85;
             break;
 
         default:
