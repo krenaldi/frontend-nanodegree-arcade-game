@@ -21,7 +21,7 @@ Enemy.prototype.update = function(dt) {
     this.x = this.x + this.speed * dt; //determines speed
     //if bug hits edge of canvas it resets back to the begninning
     if (this.x > 505){
-        this.x = 0;
+        this.x = -100;
     }
 }
 
@@ -98,7 +98,7 @@ Player.prototype.handleInput = function(key) {
 //var enemyCount = 4;
 var allEnemies = [];
 
-for (var i = 0; i < 5; i++) {
+for (var i = 0; i < 3; i++) {
     allEnemies.push(new Enemy(i));
 }
 
