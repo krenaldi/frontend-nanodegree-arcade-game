@@ -65,7 +65,7 @@ Player.prototype.update = function() {
 
 };
 
-Player.prototype.collision = function(){
+function checkCollisions(){
 if(this.x < allEnemies[0].x+50 && this.x+50 > allEnemies[0].x && this.y < allEnemies[0].y+30 && this.y+30 > allEnemies[0].y){
     console.log("fail");
 }
