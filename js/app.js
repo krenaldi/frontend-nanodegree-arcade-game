@@ -44,22 +44,34 @@ Enemy.prototype.speed = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 var Player = function() {
+    this.w = 101;
+    this.h = 171;
     this.x = 200;
     this.y = 400;
     this.sprite = 'images/char-boy.png';
 };
+//determines where player can move on canvas
 Player.prototype.update = function() {
-    if (this.x < 20 && this.y < 40) {
+    if (this.y < (this.h - 130)) {
         this.x = 200;
         this.y = 400;
-    } else if (this.x > 400) {
+    } else if (this.x < (this.w - 1)) {
+        this.x = 0;
+    } else if (this.x > (canvas.width - this.w)) {
         this.x = 400;
-    } else if (this.y < 40) {
-        this.x = 200;
-        this.y = 400;
-    } else if (this.y > 400) {
+    } else if (this.y > (canvas.height - this.h)) {
         this.y = 400;
     }
+
+};
+
+Player.prototype.collision = function(){
+if(this.x < allEnemies[0].x+50 && this.x+50 > allEnemies[0].x && this.y < allEnemies[0].y+30 && this.y+30 > allEnemies[0].y){
+    console.log("fail");
+}
+else{
+    console.log("success");
+}
 };
 
 //draws player
@@ -80,11 +92,12 @@ Player.prototype.handleInput = function(key) {
             break;
 
         case 'up':
-            this.y = this.y - 85;
+            this.y = this.y - 83;
             break;
 
         case 'down':
-            this.y = this.y + 85;
+            this.y = this.y + 83;
+            console.log(this.x,this.y);
             break;
 
         default:
@@ -103,7 +116,7 @@ for (var i = 0; i < 3; i++) {
 }
 
 // Place the player object in a variable called player
-var player = new Player(200, 600);
+var player = new Player(200, 400);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
