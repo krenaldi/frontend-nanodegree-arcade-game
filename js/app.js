@@ -20,10 +20,13 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    this.x = this.x + this.speed * dt; //determines speed
-    //if bug hits edge of canvas it resets back to the begninning
+    this.x += this.x + this.speed * dt; //determines speed
+    //if bug hits edge of canvas it resets back to the begninning at different speed
     if (this.x > 505){
         this.x = -100;
+        var row = rowArray[Math.floor(Math.random() * rowArray.length)];
+        this.y = row;
+        this.speed = (Math.random() * (maxSpeed - minSpeed) + minSpeed);
     }
 }
 
@@ -31,20 +34,6 @@ Enemy.prototype.update = function(dt) {
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
-//define speed() as prototype function
-Enemy.prototype.speed = function() {
-    var random = Math.random() + 0.5;
-    if (Math.floor(random) < 1) {
-        this.speed = 25;
-    } else {
-        this.speed = 50;
-    }
-    return this.speed;
-};
-//reset bugs after collision
-Enemy.prototype.bugReset = function () {
-        this.x = -200;
-};
 
 // Now write your own player class
 // This class requires an update(), render() and
