@@ -1,15 +1,17 @@
+// Global values
+var level = 1; //Start at level 1
+var score = 0; //Score starts at 0
+var minSpeed = 0.3; //minimum bug speed; increases every level
+var minSpeed = 0.9; //maximum bug speed; increases every level
+
 // Enemies our player must avoid
-var Enemy = function(RowCount) {
+var Enemy = function() {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
-    this.x = -100;
-    this.y = RowCount * 85 + 60 ;
-    this.speed = this.speed();
+    rowArray = [56, 139, 222]; // array of y values for each row of bug
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
-    
-    return this;
 }
 
 // Update the enemy's position, required method for game
@@ -39,6 +41,10 @@ Enemy.prototype.speed = function() {
     }
     return this.speed;
 };
+//reset bugs after collision
+Enemy.prototype.bugReset = function () {
+        this.x = -200;
+};
 
 // Now write your own player class
 // This class requires an update(), render() and
@@ -50,6 +56,12 @@ var Player = function() {
     this.y = 400;
     this.sprite = 'images/char-boy.png';
 };
+
+// resets Player to starting position
+Player.prototype.resetPlayer = function(){
+    this.x = 200;
+    this.y = 400;
+}
 //determines where player can move on canvas
 Player.prototype.update = function() {
     if (this.y < (this.h - 130)) {
@@ -62,17 +74,20 @@ Player.prototype.update = function() {
     } else if (this.y > (canvas.height - this.h)) {
         this.y = 400;
     }
-
+ //   if(this.collide === true) {
+ //   for(var i=0;i<allEnemies.length;i++) {
+  //      allEnemies[i].bugReset();   // calling the method on the object, not the class
+  //  }
 };
 
-function checkCollisions(){
-if(this.x < allEnemies[0].x+50 && this.x+50 > allEnemies[0].x && this.y < allEnemies[0].y+30 && this.y+30 > allEnemies[0].y){
-    console.log("fail");
-}
-else{
-    console.log("success");
-}
-};
+// calculates if player has collided with bugs
+//Player.prototype.isCollision = function() {
+  //  for (i = 0; i < allEnemies.length; i++) {
+    //    if ((this.col === allEnemies[i].col && this.row === allEnemies[i].row) {
+      //       return true;
+    //}
+    //return false;
+//};
 
 //draws player
 Player.prototype.render = function() {
@@ -97,6 +112,8 @@ Player.prototype.handleInput = function(key) {
 
         case 'down':
             this.y = this.y + 83;
+            if (this.y > (canvas.height - this.h)) {};
+            //this.y = 400;
             console.log(this.x,this.y);
             break;
 
