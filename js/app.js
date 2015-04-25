@@ -4,11 +4,13 @@ var score = 0; //Score starts at 0
 var minSpeed = 0.3; //minimum bug speed; increases every level
 var minSpeed = 0.9; //maximum bug speed; increases every level
 
+rowArray = [56, 139, 222]; // array of y values for each row of bug
+
 // Enemies our player must avoid
 var Enemy = function() {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
-    rowArray = [56, 139, 222]; // array of y values for each row of bug
+    
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
@@ -20,7 +22,7 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    this.x += this.x + this.speed * dt; //determines speed
+    this.x += 230 * this.speed * dt; //determines speed
     //if bug hits edge of canvas it resets back to the begninning at different speed
     if (this.x > 505){
         this.x = -100;
