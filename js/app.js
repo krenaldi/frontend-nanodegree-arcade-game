@@ -65,20 +65,7 @@ Player.prototype.update = function() {
     } else if (this.y > (canvas.height - this.h)) {
         this.y = 400;
     }
- //   if(this.collide === true) {
- //   for(var i=0;i<allEnemies.length;i++) {
-  //      allEnemies[i].bugReset();   // calling the method on the object, not the class
-  //  }
 };
-
-// calculates if player has collided with bugs
-//Player.prototype.isCollision = function() {
-  //  for (i = 0; i < allEnemies.length; i++) {
-    //    if ((this.col === allEnemies[i].col && this.row === allEnemies[i].row) {
-      //       return true;
-    //}
-    //return false;
-//};
 
 //draws player
 Player.prototype.render = function() {
@@ -116,12 +103,23 @@ Player.prototype.handleInput = function(key) {
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
-//var enemyCount = 4;
+/* Create a new Enemy for each row and set position & speed */
 var allEnemies = [];
-
-for (var i = 0; i < 3; i++) {
-    allEnemies.push(new Enemy(i));
-}
+var enemy = new Enemy();
+allEnemies.push(enemy);
+enemy.x = -50;
+enemy.y = rowArray[0];
+enemy.speed = 1;
+var enemy2 = new Enemy();
+allEnemies.push(enemy2);
+enemy2.x = 250;
+enemy2.y = rowArray[1];
+enemy2.speed = 1;
+var enemy3 = new Enemy();
+allEnemies.push(enemy3);
+enemy3.x = -150;
+enemy3.y = rowArray[2];
+enemy3.speed = 1;
 
 // Place the player object in a variable called player
 var player = new Player(200, 400);
