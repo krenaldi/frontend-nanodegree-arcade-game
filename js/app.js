@@ -55,16 +55,25 @@ var resetPlayer = function(player){
     player.y = 388;
 }
 
+/*var GameOver = function(player){
+    ctx.text = "GAME OVER!!";
+    ctx.textSub = "Refresh Page to Try Again";
+    ctx.textColor = "red";
+    this.draw();
+}*/
+
 // this function is called when player dies by hitting a bug
 function playerDies(player){
     //alert("You died. Click OK to continue.");
     resetPlayer(player);
     player.lives -= 1;
     document.getElementById("lives").innerHTML = player.lives;
+    // pulls up a game over screen when lives equals 0
     if (player.lives == 0){
-        alert("You lose!");
+        alert("GAME OVER! Refresh the page and click OK to play again.")
     }
 }
+
 //sets up collision detection & what happens when player reaches top row
 Player.prototype.update = function(dt) {
     // detects collision on each row & runs playerDies function when collision occurs
