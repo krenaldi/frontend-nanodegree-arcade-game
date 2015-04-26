@@ -1,22 +1,10 @@
 // Global values
-var level = 1; //Start at level 1
 var score = 0; //Score starts at 0
+var level = 1; //Start at level 1
 var minSpeed = 0.3; //minimum bug speed; increases every level
 var maxSpeed = 0.9; //maximum bug speed; increases every level
 
 rowArray = [56, 139, 222]; // array of y values for each row of bug
-
-// create HUD on the canvas to show number of lives & level
-/*var Hud = function() {
-    this.level = 1;
-    this.score = 0;
-    ctx.font = "12px helvetica, arial";
-    ctx.fillStyle = "red";
-    ctx.textAlign = "left";
-    ctx.fillText("SCORE " + this.score, 5, canvas.height - 5);
-    ctx.textAlign = "right";
-    ctx.fillText("LEVEL " + this.level, canvas.width - 5, canvas.height - 5)
-}*/
 
 // Enemies our player must avoid
 var Enemy = function() {
@@ -57,6 +45,7 @@ var Player = function() {
     this.h = 171;
     this.x = 200;
     this.y = 388;
+    this.score = 0;
     this.sprite = 'images/char-boy.png';
 };
 
@@ -68,7 +57,7 @@ var resetPlayer = function(player){
 
 // this function is called when player dies by hitting a bug
 function playerDies(player){
-    alert("You died. Click OK to continue.");
+    //alert("You died. Click OK to continue.");
     resetPlayer(player);
     player.lives -= 1;
     document.getElementById("lives").innerHTML = player.lives;
@@ -165,14 +154,17 @@ var player = new Player();
 //player.x = (ctx.canvas.width / 2) - (101/2);
 //player.y = 388;
 player.lives = 3; // player starts with 3 lives
+player.score = 0; // player score starts with 0 score
 
 // function is called each time the player reaches the water & goes to the next level
 function levelUp(){
     level += 1;
-    if (level == 5){
+    /*if (level == 5){
         alert("You win!");
-    }
+    }*/
+    score += 1;
     document.getElementById("level").innerHTML = level;
+    document.getElementById("score").innerHTML = score;
     resetPlayer(player);
     minSpeed += 0.3;
     maxSpeed += 0.3;
