@@ -65,6 +65,9 @@ Player.prototype.update = function(dt) {
     if ((Math.floor(allEnemies[2].x) < this.x + 35) && (Math.floor(allEnemies[2].x) > this.x - 35) && Math.floor(allEnemies[2].y) == this.y){
         playerDies(player);
     }
+    if (this.y == -27){
+        levelUp();
+    }
 };
 
 //draws player
@@ -135,7 +138,10 @@ enemy3.y = rowArray[2];
 enemy3.speed = 1;
 
 // Place the player object in a variable called player
-var player = new Player(200, 400);
+var player = new Player();
+player.x = (ctx.canvas.width / 2) - (101/2);
+player.y = 388;
+player.lives = 3; // player starts with 3 lives
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
