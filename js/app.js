@@ -6,6 +6,19 @@ var maxSpeed = 0.9; //maximum bug speed; increases every level
 
 rowArray = [56, 139, 222]; // array of y values for each row of bug
 
+// create HUD on the canvas to show number of lives & level
+var Hud = function() {
+    this.level = 1;
+    this.score = 0;
+    ctx.font = "12px helvetica, arial";
+    ctx.fillStyle = "red";
+    ctx.textAlign = "left";
+    ctx.fillText("SCORE " + this.score, 5, canvas.height - 5);
+    ctx.textAlign = "right";
+    ctx.fillText("LEVEL " + this.level, canvas.width - 5, canvas.height - 5)
+}
+display Hud();
+
 // Enemies our player must avoid
 var Enemy = function() {
     // Variables applied to each of our instances go here,
