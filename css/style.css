@@ -1,8 +1,20 @@
 body {
-    text-align: center;
-    font: helvetica;
+    text-align: center;  
+}
+h2{
+	font-family: helvetica;
+	font-size: 36px;
+	color: red;
 }
 #hud {
-	font-size: 12px;
-	font-color: "red";
+	font-family: helvetica;
+	font-size: 18px;
+	color: red;
+}
+.noMargin {
+	margin: 0;
+	padding-right: 5px;
+	padding-left: 5px;
+  position: relative;
+  display: inline-block;
 }
