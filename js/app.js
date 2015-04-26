@@ -53,6 +53,17 @@ var resetPlayer = function(player){
     player.x = (ctx.canvas.width / 2) - (101/2);
     player.y = 388;
 }
+
+// this function is called when player dies by hitting a bug
+function playerDies(player){
+    alert("You died. Click OK to continue.");
+    resetPlayer(player);
+    player.lives -= 1;
+    document.getElementById("lives").innerHTML = player.lives;
+    if (player.lives == 0){
+        alert("You lose!");
+    }
+}
 //sets up collision detection & what happens when player reaches top row
 Player.prototype.update = function(dt) {
     // detects collision on each row & runs playerDies function when collision occurs
@@ -139,10 +150,21 @@ enemy3.speed = 1;
 
 // Place the player object in a variable called player
 var player = new Player();
-player.x = (ctx.canvas.width / 2) - (101/2);
-player.y = 388;
+//player.x = (ctx.canvas.width / 2) - (101/2);
+//player.y = 388;
 player.lives = 3; // player starts with 3 lives
 
+// function is called each time the player reaches the water & goes to the next level
+function levelUp(){
+    level += 1;
+    if (level == 5){
+        alert("You win!");
+    }
+    document.getElementById("level").innerHTML = level;
+    resetPlayer(player);
+    minSpeed += 0.3;
+    maxSpeed += 0.3;
+}
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
