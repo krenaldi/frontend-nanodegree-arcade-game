@@ -2,7 +2,7 @@
 var level = 1; //Start at level 1
 var score = 0; //Score starts at 0
 var minSpeed = 0.3; //minimum bug speed; increases every level
-var minSpeed = 0.9; //maximum bug speed; increases every level
+var maxSpeed = 0.9; //maximum bug speed; increases every level
 
 rowArray = [56, 139, 222]; // array of y values for each row of bug
 
@@ -54,17 +54,8 @@ Player.prototype.resetPlayer = function(){
     this.y = 400;
 }
 //determines where player can move on canvas
-Player.prototype.update = function() {
-    if (this.y < (this.h - 130)) {
-        this.x = 200;
-        this.y = 400;
-    } else if (this.x < (this.w - 1)) {
-        this.x = 0;
-    } else if (this.x > (canvas.width - this.w)) {
-        this.x = 400;
-    } else if (this.y > (canvas.height - this.h)) {
-        this.y = 400;
-    }
+Player.prototype.update = function(dt) {
+
 };
 
 //draws player
@@ -77,22 +68,35 @@ Player.prototype.handleInput = function(key) {
     switch (key) {
 
         case 'left':
-            this.x = this.x - 100;
+            if (player.x <= 0){
+                player.x = 0;
+            } else {
+                player.x -= 101;
+            }
             break;
 
         case 'right':
-            this.x = this.x + 100;
+            if (player.x >= 400){
+                player.x = 404;
+            } else {
+                player.x += 101;
+            }
             break;
 
         case 'up':
-            this.y = this.y - 83;
+            if (player.y <= -22){
+                player.y = -27;
+            } else {
+                player.y -= 83;
+            }
             break;
 
         case 'down':
-            this.y = this.y + 83;
-            if (this.y > (canvas.height - this.h)) {};
-            //this.y = 400;
-            console.log(this.x,this.y);
+            if (player.y >= 388){
+                player.y = 388;
+            } else {
+                player.y += 83;
+            }
             break;
 
         default:
