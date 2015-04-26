@@ -49,13 +49,22 @@ var Player = function() {
 };
 
 // resets Player to starting position
-Player.prototype.resetPlayer = function(){
-    this.x = 200;
-    this.y = 400;
+var resetPlayer = function(player){
+    player.x = (ctx.canvas.width / 2) - (101/2);
+    player.y = 388;
 }
-//determines where player can move on canvas
+//sets up collision detection & what happens when player reaches top row
 Player.prototype.update = function(dt) {
-
+    // detects collision on each row & runs playerDies function when collision occurs
+    if ((Math.floor(allEnemies[0].x) < this.x + 35) && (Math.floor(allEnemies[0].x) > this.x - 35) && Math.floor(allEnemies[0].y) == this.y){
+        playerDies(player);
+    }
+    if ((Math.floor(allEnemies[1].x) < this.x + 35) && (Math.floor(allEnemies[1].x) > this.x - 35) && Math.floor(allEnemies[1].y) == this.y){
+        playerDies(player);
+    }
+    if ((Math.floor(allEnemies[2].x) < this.x + 35) && (Math.floor(allEnemies[2].x) > this.x - 35) && Math.floor(allEnemies[2].y) == this.y){
+        playerDies(player);
+    }
 };
 
 //draws player
@@ -63,7 +72,7 @@ Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-//determines how arrow keys move Player
+//determines how arrow keys move Player on the canvas
 Player.prototype.handleInput = function(key) {
     switch (key) {
 
