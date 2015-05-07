@@ -7,10 +7,12 @@ var maxSpeed = 0.9; //maximum bug speed; increases every level
 var rowArray = [56, 139, 222]; // array of y values for each row of bug
 
 // Enemies our player must avoid
-var Enemy = function() {
+var Enemy = function(x, y) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
-
+    this.x = x;
+    this.y = rowArray[y];
+    this.speed = 1;
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
@@ -135,21 +137,16 @@ Player.prototype.handleInput = function(key) {
 // Place all enemy objects in an array called allEnemies
 /* Create a new Enemy for each row and set position & speed */
 var allEnemies = [];
-var enemy = new Enemy();
+
+var enemy = new Enemy(-50, 0);
 allEnemies.push(enemy);
-enemy.x = -50;
-enemy.y = rowArray[0];
-enemy.speed = 1;
-var enemy2 = new Enemy();
+
+var enemy2 = new Enemy(250, 1);
 allEnemies.push(enemy2);
-enemy2.x = 250;
-enemy2.y = rowArray[1];
-enemy2.speed = 1;
-var enemy3 = new Enemy();
+
+var enemy3 = new Enemy(-150, 2);
 allEnemies.push(enemy3);
-enemy3.x = -150;
-enemy3.y = rowArray[2];
-enemy3.speed = 1;
+
 
 // Place the player object in a variable called player
 var player = new Player();
