@@ -4,7 +4,7 @@ var level = 1; //Start at level 1
 var minSpeed = 0.3; //minimum bug speed; increases every level
 var maxSpeed = 0.9; //maximum bug speed; increases every level
 
-rowArray = [56, 139, 222]; // array of y values for each row of bug
+var rowArray = [56, 139, 222]; // array of y values for each row of bug
 
 // Enemies our player must avoid
 var Enemy = function() {
