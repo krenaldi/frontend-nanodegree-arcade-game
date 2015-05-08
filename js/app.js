@@ -72,16 +72,11 @@ function playerDies(player) {
 //sets up collision detection & what happens when player reaches top row
 Player.prototype.update = function(dt) {
     // detects collision on each row & runs playerDies function when collision occurs
-    if ((Math.floor(allEnemies[0].x) < this.x + 35) && (Math.floor(allEnemies[0].x) > this.x - 35) && Math.floor(allEnemies[0].y) == this.y) {
+    for (var i = 0; i < 2; i++) {
+        if ((Math.floor(allEnemies[i].x) < this.x + 35) && (Math.floor(allEnemies[i].x) > this.x - 35) && Math.floor(allEnemies[i].y) == this.y) {
         playerDies(player);
-    }
-    if ((Math.floor(allEnemies[1].x) < this.x + 35) && (Math.floor(allEnemies[1].x) > this.x - 35) && Math.floor(allEnemies[1].y) == this.y) {
-        playerDies(player);
-    }
-    if ((Math.floor(allEnemies[2].x) < this.x + 35) && (Math.floor(allEnemies[2].x) > this.x - 35) && Math.floor(allEnemies[2].y) == this.y) {
-        playerDies(player);
-    }
-    if (this.y == -27) {
+        }
+    if (this.y == -27) 
         levelUp();
     }
 };
