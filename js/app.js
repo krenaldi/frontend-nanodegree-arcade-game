@@ -52,15 +52,15 @@ var Player = function() {
 };
 
 // resets Player to starting position
-var resetPlayer = function(player) {
-    player.x = (ctx.canvas.width / 2) - (101 / 2);
-    player.y = 388;
+Player.prototype.reset = function(player) {
+    this.x = (ctx.canvas.width / 2) - (101 / 2);
+    this.y = 388;
 };
 
 // this function is called when player dies by hitting a bug
 function playerDies(player) {
     //alert("You died. Click OK to continue.");
-    resetPlayer(player);
+    player.reset();
     player.lives -= 1;
     document.getElementById("lives").innerHTML = player.lives;
     // pulls up a game over alert when lives equals 0
@@ -162,7 +162,7 @@ function levelUp() {
         score += 1;
         document.getElementById("level").innerHTML = level;
         document.getElementById("score").innerHTML = score;
-        resetPlayer(player);
+        player.reset();
         minSpeed += 0.3;
         maxSpeed += 0.3;
     }
