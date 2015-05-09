@@ -52,13 +52,13 @@ var Player = function() {
 };
 
 // resets Player to starting position
-Player.prototype.reset = function(player) {
+Player.prototype.reset = function() {
     this.x = (ctx.canvas.width / 2) - (101 / 2);
     this.y = 388;
 };
 
 // this function is called when player dies by hitting a bug
-function playerDies(player) {
+Player.prototype.death = function() {
     //alert("You died. Click OK to continue.");
     player.reset();
     player.lives -= 1;
@@ -67,14 +67,14 @@ function playerDies(player) {
     if (player.lives === 0) {
         alert("GAME OVER! Refresh the page and click OK to play again.");
     }
-}
+};
 
 //sets up collision detection & what happens when player reaches top row
 Player.prototype.update = function(dt) {
     // detects collision on each row & runs playerDies function when collision occurs
     for (var i = 0; i < 2; i++) {
         if ((Math.floor(allEnemies[i].x) < this.x + 35) && (Math.floor(allEnemies[i].x) > this.x - 35) && Math.floor(allEnemies[i].y) == this.y) {
-        playerDies(player);
+        player.death();
         }
     if (this.y == -27) 
         levelUp();
@@ -132,6 +132,11 @@ Player.prototype.handleInput = function(key) {
 // Place all enemy objects in an array called allEnemies
 /* Create a new Enemy for each row and set position & speed */
 var allEnemies = [];
+
+/*for (var i = 0; i < allEnemies.length; i++) {
+    var enemy = new Enemy();
+    allEnemies.push(i);
+}*/
 
 var enemy = new Enemy(-50, 0);
 allEnemies.push(enemy);
