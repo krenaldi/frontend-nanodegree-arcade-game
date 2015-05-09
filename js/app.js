@@ -133,20 +133,9 @@ Player.prototype.handleInput = function(key) {
 /* Create a new Enemy for each row and set position & speed */
 var allEnemies = [];
 
-/*for (var i = 0; i < allEnemies.length; i++) {
-    var enemy = new Enemy();
-    allEnemies.push(i);
-}*/
-
-var enemy = new Enemy(-50, 0);
-allEnemies.push(enemy);
-
-var enemy2 = new Enemy(250, 1);
-allEnemies.push(enemy2);
-
-var enemy3 = new Enemy(-150, 2);
-allEnemies.push(enemy3);
-
+for (var i = 0; i < 3; i++) {
+    allEnemies.push(new Enemy(i));
+}
 
 // Place the player object in a variable called player
 var player = new Player();
